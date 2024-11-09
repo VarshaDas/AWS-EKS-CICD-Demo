@@ -1,5 +1,7 @@
 pipeline {
-    agent any
+     agent {
+                  docker 'docker:19.03.12'  // Using a Docker image with Docker installed
+              }
     environment {
         DOCKER_IMAGE = "${DOCKERHUB_USERNAME}/spring-boot-app"
     }
