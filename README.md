@@ -3,7 +3,7 @@
 This project demonstrates a **CI/CD pipeline** for a Spring Boot application using Jenkins. The pipeline automates the steps to build, package, create a Docker image, and push it to a Docker registry.
 
 
-docker run -d -p 8080:8080 -p 50000:50000 --name jenkins --network jenkins -v jenkins_home:/var/jenkins_home -v /var/run/docker.sock:/var/run/docker.sock jenkins/jenkins
+apt-get install -y docker.io
 
 
 reakdown:
