@@ -8,7 +8,6 @@ WORKDIR /app
 COPY target/varsha-springboot-eks.jar varsha-springboot-eks.jar
 
 # Expose the port your application runs on
-EXPOSE 8080
 
 # Run the JAR file
 ENTRYPOINT ["java", "-jar", "varsha-springboot-eks.jar"]
