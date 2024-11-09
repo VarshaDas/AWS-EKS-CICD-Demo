@@ -9,6 +9,13 @@ pipeline {
                 git credentialsId: "${GITHUB_CREDENTIALS_ID}", url: "${GITHUB_REPO_URL}"
             }
         }
+
+        stage('Set Permissions') {
+                    steps {
+                        sh 'chmod +x mvnw'  // Ensure executable permissions for mvnw
+                }
+             }
+
         stage('Build') {
             steps {
                 sh './mvnw clean install'
