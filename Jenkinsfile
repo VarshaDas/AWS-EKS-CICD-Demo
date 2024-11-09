@@ -25,7 +25,7 @@ pipeline {
                script {
                    // Log in to Docker using the Personal Access Token securely
                    sh '''
-                    echo $DOCKER_PAT | docker login --username varshadas23 --password-stdin
+                    echo $DOCKER_TOKEN | docker login --username varshadas23 --password-stdin
                     docker push varsha-springboot-eks:latest
                     '''
                }
