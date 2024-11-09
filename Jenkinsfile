@@ -21,6 +21,7 @@ pipeline {
        }
 
        stage('Docker Push') {
+           agent any
            steps {
                script {
                    // Log in to Docker using the Personal Access Token securely
