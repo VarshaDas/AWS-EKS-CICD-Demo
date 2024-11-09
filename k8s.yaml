@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: greetings-controller
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: greetings-controller
+  template:
+    metadata:
+      labels:
+        app: greetings-controller
+    spec:
+      containers:
+        - name: greetings-controller
+          image: 756639706743.dkr.ecr.ap-south-1.amazonaws.com/varsha-springboot-eks-demo:latest
+          ports:
+            - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: greetings-service
+spec:
+  selector:
+    app: greetings-controller
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
+  type: LoadBalancer
