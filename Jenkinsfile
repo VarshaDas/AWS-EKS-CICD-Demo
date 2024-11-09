@@ -16,7 +16,7 @@ pipeline {
        stage('Docker Build') {
            agent any
            steps {
-               sh 'docker build -t varsha-springboot-eks:latest .'
+               sh 'docker build -t varshadas23/varsha-springboot-eks:latest .'
            }
        }
 
@@ -27,7 +27,7 @@ pipeline {
                    // Log in to Docker using the Personal Access Token securely
                    sh '''
                     echo $DOCKER_TOKEN | docker login --username varshadas23 --password-stdin
-                    docker push varsha-springboot-eks:latest
+                    docker push varshadas23/varsha-springboot-eks:latest
                     '''
                }
            }
