@@ -1,6 +1,12 @@
 #!groovy
 pipeline {
+
     agent none
+    environment {
+        AWS_REGION = 'us-east-1'  // Replace with the region of your public ECR
+        ECR_REPO_URI = 'public.ecr.aws/e6x0h8x3/varsha-aws-registry'  // Public ECR repository URI
+        IMAGE_TAG = 'latest'
+    }
    stages {
        stage('Maven Install') {
            agent {
