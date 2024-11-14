@@ -7,17 +7,21 @@ pipeline {
         ECR_REPO_URI = 'public.ecr.aws/e6x0h8x3/varsha-aws-registry'  // Public ECR repository URI
         IMAGE_TAG = 'latest'
     }
-   stages {
-       stage('Maven Install') {
-           agent {
-               docker {
-                   image 'maven:3.9.4'
-               }
-           }
-           steps {
-               sh 'mvn clean install'
-           }
-       }
+
+    stages {
+        stage('Maven Install') {
+            agent {
+                docker {
+                    image 'maven:3.9.4'
+                    args '-u root'  // Ensure you have root access to install aws-cli
+                }
+            }
+            steps {
+                sh 'apt-get update && apt-get install -y awscli'  // Install aws-cli
+                sh 'mvn clean install'
+            }
+        }
+
 
 //       stage('Docker Build') {
 //           agent any
