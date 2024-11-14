@@ -39,7 +39,8 @@ pipeline {
         stage('Docker Build') {
             agent any
             steps {
-                sh 'docker build -t ${ECR_REPO_URI}:${IMAGE_TAG} .'
+                sh 'docker build -t varsha-new-registry .'
+                sh  'docker tag varsha-new-registry:latest 756639706743.dkr.ecr.ap-south-1.amazonaws.com/varsha-new-registry:latest'
             }
         }
 
@@ -48,7 +49,7 @@ pipeline {
             steps {
                 script {
                     sh '''
-                    aws ecr-public get-login-password --region ${AWS_REGION} | docker login --username AWS --password-stdin ${ECR_REPO_URI}
+                    aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin 756639706743.dkr.ecr.ap-south-1.amazonaws.com
                     '''
                 }
             }
@@ -57,7 +58,7 @@ pipeline {
         stage('Docker Push to Public ECR') {
             agent any
             steps {
-                sh 'docker push ${ECR_REPO_URI}:${IMAGE_TAG}'
+                sh 'docker push 756639706743.dkr.ecr.ap-south-1.amazonaws.com/varsha-new-registry:latest'
             }
         }
     }
