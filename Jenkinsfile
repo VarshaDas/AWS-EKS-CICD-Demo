@@ -17,7 +17,7 @@ pipeline {
                 }
             }
             steps {
-                sh 'apt-get update && apt-get install -y awscli'  // Install aws-cli
+//                sh 'apt-get update && apt-get install -y awscli'  // Install aws-cli
                 sh 'mvn clean install'
             }
         }
@@ -51,7 +51,11 @@ pipeline {
        }
 
        stage('Docker Login to Public ECR') {
-           agent any
+           agent {
+               docker {
+                   image 'amazon/aws-cli'
+               }
+           }
            steps {
                script {
                    // Log in to public AWS ECR
